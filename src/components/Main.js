@@ -3,9 +3,9 @@ import React from 'react';
 import {api} from '../utils/Api';
 import Card from './Card';
 function Main(props) {
-  const [userName, setUserName] = React.useState();
-  const [userDescription, setUserDescription] = React.useState();
-  const [userAvatar, setUserAvatar] = React.useState();
+  const [userName, setUserName] = React.useState('');
+  const [userDescription, setUserDescription] = React.useState('');
+  const [userAvatar, setUserAvatar] = React.useState('');
   const [cards, setCards] = React.useState([]);
   React.useEffect(() => {
     api.getUserData()
@@ -46,7 +46,7 @@ function Main(props) {
           <section className="cards">
             <ul className="cards__container">
               {cards.map((item, i) => (
-              <Card card={item} onCardClick={props.onCardClick} key={i}/>
+              <Card card={item} onCardClick={props.onCardClick} key={item._id}/>
               ))
               }
             </ul>
