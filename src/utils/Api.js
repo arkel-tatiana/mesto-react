@@ -39,8 +39,8 @@ class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: formData.username,
-        about: formData.userjob
+        name: formData.name,
+        about: formData.about
       })
       })
       .then(this._getResponseData)
@@ -50,24 +50,17 @@ class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: dataValue.link
+        avatar: dataValue
       })
       })
       .then(this._getResponseData)
   }
-  likeCardElement(idCard) {
+  changeLikeCardStatus(idCard, status) {
     return fetch(this._baseUrl + '/cards/likes/' + idCard, {
-      method: 'PUT',
+      method: status ? 'PUT' : 'DELETE',
       headers: this._headers
       })
-      .then(this._getResponseData)
-  };
-  deleteLikeCardElement(idCard) {
-    return fetch(this._baseUrl + '/cards/likes/' + idCard, {
-      method: 'DELETE',
-      headers: this._headers
-    })
-    .then(this._getResponseData)
+      .then(this._getResponseData)    
   };
   _getResponseData(res) {
     if (!res.ok) {
